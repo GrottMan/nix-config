@@ -4,8 +4,8 @@ cd /home/tomas/nix-config
 git pull
 git add *
 # Autoformat your nix files
-alejandra  /etc/nixos/ &>/dev/null \
-  || ( alejandra /etc/nixos/ ; echo "formatting failed!" && exit 1)
+alejandra  /home/tomas/nix-config/ &>/dev/null \
+  || ( alejandra /home/tomas/nix-configs/ ; echo "formatting failed!" && exit 1)
 
 echo "NixOS Rebuilding..."
 
