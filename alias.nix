@@ -7,7 +7,8 @@
   environment.shellAliases = {
     ll = "ls -lh";
     gc = "git commit";
-    update = "sudo nixos-rebuild switch";
+    # update = "sudo nixos-rebuild switch";
+    update = "sudo bash ./rebuild.sh";
   };
 
   # OR, if you want aliases specific to a shell like Bash, use this instead:

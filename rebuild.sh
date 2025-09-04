@@ -22,7 +22,7 @@ git add .
 # Get current generation metadata for the commit message
 # We use 'nixos-rebuild list-generations' to get a clean string for the commit message.
 echo "NixOS Rebuilding..."
-sudo nixos-rebuild switch
+nixos-rebuild switch
 
 # Clean up old generations, keeping the last 3
 # nh clean all --keep 3
@@ -32,6 +32,7 @@ current_generation=$(nixos-rebuild list-generations | grep 'current' | sed 's/.*
 
 # Commit the changes. The `|| true` prevents the script from exiting if there's nothing to commit.
 echo "Committing changes..."
+
 git commit -am "NixOS rebuild: $current_generation" || true
 
 # Push the changes to the remote repository
