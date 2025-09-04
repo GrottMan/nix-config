@@ -22,6 +22,7 @@
     alejandra
     kdePackages.partitionmanager
     prusa-slicer
+    mangohud
   ];
 
   programs.steam = {
