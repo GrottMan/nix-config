@@ -23,6 +23,7 @@
     kdePackages.partitionmanager
     prusa-slicer
     mangohud
+    steam-run
   ];
 
   programs.steam = {
