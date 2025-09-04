@@ -28,6 +28,7 @@
     fastfetch
     lact
   ];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   programs.steam = {
