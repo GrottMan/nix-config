@@ -173,6 +173,7 @@
     gnome-keyring
     alejandra
     pkgs.kdePackages.partitionmanager
+    pkgs.prusa-slicer
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
