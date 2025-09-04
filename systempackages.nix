@@ -28,7 +28,6 @@
     fastfetch
     lact
   ];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   programs.steam = {
@@ -37,4 +36,7 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+
+  systemd.packages = with pkgs; [lact];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
 }
