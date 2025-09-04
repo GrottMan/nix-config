@@ -30,6 +30,7 @@
     lutris
     protonplus
     vlc
+    subtitleedit
   ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
