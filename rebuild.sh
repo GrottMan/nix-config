@@ -9,7 +9,7 @@ alejandra  /home/tomas/nix-config/ &>/dev/null \
 
 echo "NixOS Rebuilding..."
 
-nh os switch --update
+sudo nixos-rebuild switch
 #nh clean all --keep 3
 
 # Get current generation metadata
