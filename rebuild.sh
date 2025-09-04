@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-cd /etc/nixos/
+cd /home/tomas/nix-config
 git pull
 git add *
 # Autoformat your nix files
