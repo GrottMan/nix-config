@@ -9,7 +9,7 @@
     firefox
     neofetch
     htop
-    btop
+    btop-rocm
     wget
     gitFull
     (vscode-with-extensions.override {

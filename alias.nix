@@ -8,7 +8,7 @@
     ll = "ls -lh";
     gc = "git commit";
     # update = "sudo nixos-rebuild switch";
-    update = "sudo -E bash ./rebuild.sh";
+    update = "bash /home/tomas/nix-config/rebuild.sh";
   };
 
   # OR, if you want aliases specific to a shell like Bash, use this instead:
