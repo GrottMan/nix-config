@@ -3,12 +3,17 @@
   pkgs,
   ...
 }: {
-  # ... other configuration options
-
-  # Set aliases globally
+  # Set aliases for all users in any shell that supports them
   environment.shellAliases = {
     ll = "ls -lh";
     gc = "git commit";
-    update = "./rebuild.sh";
+    update = "sudo nixos-rebuild switch";
   };
+
+  # OR, if you want aliases specific to a shell like Bash, use this instead:
+  # programs.bash.shellAliases = {
+  #   ll = "ls -lh";
+  #   gc = "git commit";
+  #   update = "sudo nixos-rebuild switch";
+  # };
 }
