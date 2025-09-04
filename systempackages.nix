@@ -24,7 +24,7 @@
     prusa-slicer
     mangohud
     steam-run
-    rocmPackages.rocm-smi
+    rocmPackages.rocmPath
   ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
