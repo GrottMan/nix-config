@@ -27,6 +27,9 @@
     rocmPackages.rocmPath
     fastfetch
     lact
+    lutris
+    protonplus
+    vlc
   ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
