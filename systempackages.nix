@@ -25,6 +25,7 @@
     mangohud
     steam-run
     rocmPackages.rocmPath
+    fastfetch
   ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
