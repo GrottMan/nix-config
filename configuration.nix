@@ -28,7 +28,7 @@
   };
 
   #fstab
-
+  hardware.graphics.enable32Bit = true; # For 32 bit applications
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "tomas-dator"; # Define your hostname.
