@@ -2,71 +2,75 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 # sudo nixos-rebuild switch
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
-boot.loader = {
-  grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    efiInstallAsRemovable = true;
+  boot.loader = {
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+    };
   };
-};
-boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = ["ntfs"];
 
-fileSystems."/mnt/2tb-m2" = {
-   device = "/dev/disk/by-uuid/D8D6ABD1D6ABADE6";
-   fsType = "ntfs";
-   options = [ # If you don't have this options attribute, it'll default to "defaults"
-     # boot options for fstab. Search up fstab mount options you can use
-     "users" # Allows any user to mount and unmount
-     "nofail" # Prevent system from failing if this drive doesn't mount
-     "uid=1000"
-     "gid=1000"
-     "dmask=000"
-     "fmask=000"
-   ];
- };
-fileSystems."/mnt/4tb-hdd" = {
-   device = "/dev/disk/by-uuid/8425-62D8 ";
-   fsType = "exfat";
-   options = [ # If you don't have this options attribute, it'll default to "defaults"
-     # boot options for fstab. Search up fstab mount options you can use
-     "users" # Allows any user to mount and unmount
-     "nofail" # Prevent system from failing if this drive doesn't mount
-     "uid=1000"
-     "gid=1000"
-     "dmask=000"
-     "fmask=000"
-   ];
- };
- fileSystems."/mnt/5tb-games" = {
-   device = "/dev/disk/by-uuid/42C08394C0838CBB";
-   fsType = "ntfs";
-   options = [ # If you don't have this options attribute, it'll default to "defaults"
-     # boot options for fstab. Search up fstab mount options you can use
-     "users" # Allows any user to mount and unmount
-     "nofail" # Prevent system from failing if this drive doesn't mount
-     "uid=1000"
-     "gid=1000"
-     "dmask=000"
-     "fmask=000"
-   ];
- };
+  fileSystems."/mnt/2tb-m2" = {
+    device = "/dev/disk/by-uuid/D8D6ABD1D6ABADE6";
+    fsType = "ntfs";
+    options = [
+      # If you don't have this options attribute, it'll default to "defaults"
+      # boot options for fstab. Search up fstab mount options you can use
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "uid=1000"
+      "gid=1000"
+      "dmask=000"
+      "fmask=000"
+    ];
+  };
+  fileSystems."/mnt/4tb-hdd" = {
+    device = "/dev/disk/by-uuid/8425-62D8 ";
+    fsType = "exfat";
+    options = [
+      # If you don't have this options attribute, it'll default to "defaults"
+      # boot options for fstab. Search up fstab mount options you can use
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "uid=1000"
+      "gid=1000"
+      "dmask=000"
+      "fmask=000"
+    ];
+  };
+  fileSystems."/mnt/5tb-games" = {
+    device = "/dev/disk/by-uuid/42C08394C0838CBB";
+    fsType = "ntfs";
+    options = [
+      # If you don't have this options attribute, it'll default to "defaults"
+      # boot options for fstab. Search up fstab mount options you can use
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "uid=1000"
+      "gid=1000"
+      "dmask=000"
+      "fmask=000"
+    ];
+  };
 
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
-networking.hostName = "tomas-dator"; # Define your hostname.
+  networking.hostName = "tomas-dator"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -137,10 +141,10 @@ networking.hostName = "tomas-dator"; # Define your hostname.
   users.users.tomas = {
     isNormalUser = true;
     description = "Tomas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -157,19 +161,18 @@ networking.hostName = "tomas-dator"; # Define your hostname.
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     gitFull
     (vscode-with-extensions.override {
-        vscodeExtensions = with vscode-extensions; [
-          bbenoist.nix
-        ];
-      })
+      vscodeExtensions = with vscode-extensions; [
+        bbenoist.nix
+      ];
+    })
     github-desktop
     gnome-keyring
     alejandra
     pkgs.kdePackages.partitionmanager
-
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -198,5 +201,4 @@ networking.hostName = "tomas-dator"; # Define your hostname.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }
