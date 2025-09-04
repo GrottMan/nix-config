@@ -20,3 +20,4 @@ git commit -am "$current"
 echo "Rebuild finished"
 # git push
 # Commit all changes witih the generation metadata
+
