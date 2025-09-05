@@ -55,9 +55,6 @@
     package = pkgs.lact;
   };
 
-  # Enables and configures NFS client functionality.
-  networking.nfs.client.enable = true;
-
   # NFS support in the initial ramdisk.
   boot.initrd.supportedFilesystems = [ "nfs" ];
   boot.initrd.kernelModules = [ "nfs" ];
