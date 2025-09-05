@@ -1,3 +1,4 @@
+# Start of alias.nix
 {
   config,
   pkgs,
@@ -18,3 +19,4 @@
   #   update = "sudo nixos-rebuild switch";
   # };
 }
+# End of alias.nix
