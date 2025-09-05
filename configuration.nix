@@ -14,6 +14,9 @@
     ./systempackages.nix
     ./alias.nix
     ./fstab.nix
+
+    # Import home-manager configuration.
+    (builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz)
   ];
 
   # Bootloader.
@@ -145,5 +148,12 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
+  
+  # The home-manager configuration for user tomas
+  home-manager.users.tomas = { pkgs, ... }: {
+    home.packages = [ pkgs.atool pkgs.httpie ];
+    programs.bash.enable = true;
+    home.stateVersion = "25.05";
+  };
 }
 # End of configuration.nix
