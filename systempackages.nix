@@ -30,6 +30,7 @@
     subtitleedit
     maxcso
     nfs-utils
+    home-manager
   ];
 
   # Enables AppImage support.
