@@ -1,10 +1,12 @@
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 # sudo nixos-rebuild switch
 # List packages installed in system profile. To search, run:
 # $ nix search wget
+
 {pkgs, ...}: {
+  # This block defines the system-wide packages.
   environment.systemPackages = with pkgs; [
     firefox
     neofetch
@@ -12,11 +14,11 @@
     btop-rocm
     wget
     gitFull
-    (vscode-with-extensions.override {
+    vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
       ];
-    })
+    }
     github-desktop
     gnome-keyring
     alejandra
@@ -33,22 +35,30 @@
     subtitleedit
     maxcso
     nfs-utils
-
   ];
+
+  # Enables AppImage support.
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
+
+  # Enables Steam and configures firewall rules.
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
 
-  systemd.packages = with pkgs; [lact];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
-environment.systemPackages = with pkgs; [ nfs-utils ];
-boot.initrd = {
-  supportedFilesystems = [ "nfs" ];
-  kernelModules = [ "nfs" ];
-};
+  # Configures the lactd service for AMD GPUs, which is needed by the lact GUI.
+  services.lactd = {
+    enable = true;
+    package = pkgs.lact;
+  };
+
+  # Enables and configures NFS client functionality.
+  networking.nfs.client.enable = true;
+
+  # NFS support in the initial ramdisk.
+  boot.initrd.supportedFilesystems = [ "nfs" ];
+  boot.initrd.kernelModules = [ "nfs" ];
 }
