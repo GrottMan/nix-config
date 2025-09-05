@@ -8,8 +8,8 @@
   environment.shellAliases = {
     ll = "ls -lh";
     gc = "git commit";
-    # update = "sudo nixos-rebuild switch";
-    update = "bash /home/tomas/nix-config/rebuild.sh";
+    # update = "sudo nixos-rebuild switch"; # original
+    update = "bash /home/tomas/nix-config/rebuild.sh"; # mitt kommando för att köra batch-filen
   };
 
   # OR, if you want aliases specific to a shell like Bash, use this instead:
