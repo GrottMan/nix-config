@@ -1,6 +1,6 @@
 # Start of configuration.nix
 # Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 # sudo nixos-rebuild switch
 {
@@ -28,8 +28,10 @@
     };
   };
 
-  #fstab
-  hardware.graphics.enable32Bit = true; # For 32 bit applications
+  # Enable support for 32-bit applications.
+  hardware.graphics.enable32Bit = true;
+
+  # Enable flakes and nix-command.
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   networking.hostName = "tomas-dator"; # Define your hostname.
@@ -114,9 +116,6 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "tomas";
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -143,8 +142,8 @@
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
-  # End of configuration.nix
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 }
+# End of configuration.nix
