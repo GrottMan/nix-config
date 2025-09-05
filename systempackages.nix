@@ -32,7 +32,8 @@
     vlc
     subtitleedit
     maxcso
-    
+    nfs-utils
+
   ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
@@ -45,4 +46,9 @@
 
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
+environment.systemPackages = with pkgs; [ nfs-utils ];
+boot.initrd = {
+  supportedFilesystems = [ "nfs" ];
+  kernelModules = [ "nfs" ];
+};
 }
