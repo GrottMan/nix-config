@@ -32,7 +32,7 @@
     vlc
     subtitleedit
     maxcso
-    linuxKernel.kernels.linux_zen
+    
   ];
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
