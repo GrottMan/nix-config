@@ -1,7 +1,5 @@
 # Start of fstab.nix
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# This file handles all file system mounts, both local and network.
 
 { config, pkgs, ... }:
 
@@ -30,7 +28,7 @@
     };
 
     "/mnt/4tb-hdd" = {
-      device = "/dev/disk/by-uuid/8425-62D8"; # <--- Trailing space removed
+      device = "/dev/disk/by-uuid/8425-62D8";
       fsType = "exfat";
       options = [
         "users"
